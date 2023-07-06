@@ -14,6 +14,16 @@ builder.Services.AddControllers(options =>
 builder.Services.DataAccessLayerExtension(builder.Configuration);
 builder.Services.BusinessLogicLayerExtension();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("localhost:3000", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
